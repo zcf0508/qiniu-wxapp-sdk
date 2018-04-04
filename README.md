@@ -15,7 +15,7 @@ Qiniu-wxapp-SDK
 - [API](#api)
 - [说明](#note)
 - [常见问题](#faq)
-- [ChangeLog](https://github.com/gpake/qiniu-wxapp-sdk/blob/master/CHANGELOG.md)
+- [ChangeLog](https://github.com/zcf0508/qiniu-wxapp-sdk/blob/master/CHANGELOG.md)
 
 ### 概述
 
@@ -48,6 +48,7 @@ Qiniu-wxapp-SDK  为客户端 SDK， ~没有包含 token 生成实现，为了�
 -   SDK 依赖服务端颁发 uptoken，可以通过以下二种方式实现：
     -   利用[七牛服务端 SDK ](http://developer.qiniu.com/resource/official.html#sdk)构建后端服务（建议的方式）
     -   利用七牛底层 API 构建服务，详见七牛[上传策略](http://developer.qiniu.com/article/developer/security/put-policy.html)和[上传凭证](http://developer.qiniu.com/article/developer/security/upload-token.html)
+-   **SDK 现已支持在本地生成SDK**，可直接调用sdk的getLocalToken方法
 -   您需要了解您的七牛`存储空间`设置在那个区域，比如华东，华南等，参见[区域设置](#region)
 
 后端服务应提供一个 URL 地址，供小程序请求该地址后获得 uptoken。请求成功后，服务端应返回如下格式的 json（至少包含 uptoken 字段）：
