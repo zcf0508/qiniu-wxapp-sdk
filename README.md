@@ -4,6 +4,8 @@ Qiniu-wxapp-SDK
 
 基于七牛云 API 开发的微信小程序 SDK
 
+**2018.04.03：增加本地生成Token**
+
 **2018.03.15：@ZhaZhengRefn 发现七牛上传返回数据变成了 charcode，暂时没有发现微信或七牛有修改说明，所以做出暂时性处理，请更新**
 
 ### 快速导航
@@ -19,7 +21,7 @@ Qiniu-wxapp-SDK
 
 Qiniu-wxapp-SDK 是七牛云在小程序上的实现，网络功能依赖于微信小程序 API。您可以基于 SDK 方便的在小程序中上传文件至七牛云。
 
-Qiniu-wxapp-SDK  为客户端 SDK，~~没有包含 token 生成实现，为了安全，token 建议通过网络从服务端获取，具体生成代码可以参考以下服务端 SDK 的文档。SDK Demo中暂时没有包含这部分。~~现已增加本地生成token功能。
+Qiniu-wxapp-SDK  为客户端 SDK， ~没有包含 token 生成实现，为了安全，token 建议通过网络从服务端获取，具体生成代码可以参考以下服务端 SDK 的文档。SDK Demo中暂时没有包含这部分。~ 现已增加本地生成token功能。
 
 - [Java](http://developer.qiniu.com/code/v7/sdk/java.html)
 - [PHP](http://developer.qiniu.com/code/v7/sdk/php.html)
