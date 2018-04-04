@@ -19,7 +19,7 @@ Qiniu-wxapp-SDK
 
 Qiniu-wxapp-SDK 是七牛云在小程序上的实现，网络功能依赖于微信小程序 API。您可以基于 SDK 方便的在小程序中上传文件至七牛云。
 
-Qiniu-wxapp-SDK  为客户端 SDK，没有包含 token 生成实现，为了安全，token 建议通过网络从服务端获取，具体生成代码可以参考以下服务端 SDK 的文档。SDK Demo中暂时没有包含这部分。
+Qiniu-wxapp-SDK  为客户端 SDK，~~没有包含 token 生成实现，为了安全，token 建议通过网络从服务端获取，具体生成代码可以参考以下服务端 SDK 的文档。SDK Demo中暂时没有包含这部分。~~现已增加本地生成token功能。
 
 - [Java](http://developer.qiniu.com/code/v7/sdk/java.html)
 - [PHP](http://developer.qiniu.com/code/v7/sdk/php.html)
@@ -73,13 +73,13 @@ Qiniu-wxapp-SDK  为客户端 SDK，没有包含 token 生成实现，为了安
 
 存储区域对应 HTTPS 地址，参考[官方文档](https://support.qiniu.com/hc/kb/article/210702)
 
-| 存储区域 | 区域代码 | HTTPS 地址             |
-| -------- | -------- | ---------------------- |
-| 华东     | ECN      | https://up.qbox.me     |
-| 华北     | NCN      | https://up-z1.qbox.me  |
-| 华南     | SCN      | https://up-z2.qbox.me  |
-| 北美     | NA       | https://up-na0.qbox.me |
-| 新加坡   | ASG      | https://up-as0.qbox.me |
+| 存储区域 | 区域代码 | HTTPS 地址               |
+| ---- | ---- | ---------------------- |
+| 华东   | ECN  | https://up.qbox.me     |
+| 华北   | NCN  | https://up-z1.qbox.me  |
+| 华南   | SCN  | https://up-z2.qbox.me  |
+| 北美   | NA   | https://up-na0.qbox.me |
+| 新加坡  | ASG  | https://up-as0.qbox.me |
 
 **注意！！**目前微信限制每月只能修改三次域名白名单。
 
@@ -93,7 +93,7 @@ Qiniu-wxapp-SDK  为客户端 SDK，没有包含 token 生成实现，为了安
 直接克隆仓库
 
 ```
-git clone https://github.com/gpake/qiniu-wxapp-sdk.git
+git clone https://github.com/zcf0508/qiniu-wxapp-sdk.git
 ```
 
 qiniuUploader.js 文件在 sdk 目录。
@@ -140,7 +140,10 @@ Page({
           // 以下方法三选一即可，优先级为：uptoken > uptokenURL > uptokenFunc
           uptoken: '[yourTokenString]', // 由其他程序生成七牛 uptoken
           uptokenURL: 'UpTokenURL.com/uptoken', // 从指定 url 通过 HTTP GET 获取 uptoken，返回的格式必须是 json 且包含 uptoken 字段，例如： {"uptoken": "[yourTokenString]"}
-          uptokenFunc: function() {return '[yourTokenString]';}
+          uptokenFunc: function() {
+            //直接调用sdk的getLocalToken方法
+            return qiniuUploader.getLocalToken(access_key, secret_key, bucketname)
+          }
         }, (res) => {
             console.log('上传进度', res.progress)
             console.log('已经上传的数据长度', res.totalBytesSent)
@@ -177,8 +180,8 @@ var options = {
   uptoken: 'xxxxxxxxUpToken', // 由其他程序生成七牛 uptoken
   uptokenURL: 'UpTokenURL.com/uptoken', // 从指定 url 通过 HTTP GET 获取 uptoken，返回的格式必须是 json 且包含 uptoken 字段，例如： {"uptoken": "0MLvWPnyy..."}
   uptokenFunc: function() {
-    // do something to make a uptoken
-    return 'zxxxzaqdfUpToken';
+    //直接调用sdk的getLocalToken方法
+    return qiniuUploader.getLocalToken(access_key, secret_key, bucketname)
   },
   shouldUseQiniuFileName: false // 如果是 true，则文件 key 由 qiniu 服务器分配 (全局去重)。默认是 false: 即使用微信产生的 filename
 };
