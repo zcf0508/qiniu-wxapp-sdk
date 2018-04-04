@@ -2,6 +2,11 @@
 Qiniu-wxapp-SDK Change Log
 ============
 
+2018.04.02
+---
+
+* 添加本地生成uptoken
+
 2018.03.05
 ---
 
